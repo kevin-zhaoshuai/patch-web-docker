@@ -1,0 +1,25 @@
+db:
+  image: mysql
+  expose:
+    - "3306"
+  volumes:
+    - ./db:/var/lib/mysql
+  environment:
+    - MYSQL_DATABASE=LTC_China_CommitInfo
+    - MYSQL_ROOT_PASSWORD=000000
+
+web:
+  build: .
+  command: python ./mysite/mysite/manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8099:8000"
+  links:
+    - db
+
+git:
+  build: ./git
+  command: python /code/git_work.py
+  links:
+    - db

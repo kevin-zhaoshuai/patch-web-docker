@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+{% load url from future %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Commit Statistics for LTC/SH</title>
+
+    {% bootstrap_stylesheet_tag %}
+    {% bootstrap_stylesheet_tag "responsive" %}
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+	.shortselect{
+	height:22px;
+	width:120px;
+	line-height:18px;
+	padding:2px;
+	border:1px solid #9bc0dd;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	}
+    </style>
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">Commit Statistics for LTC/SH</a>
+            <ul class="nav">
+                <li><a href="{% url 'kernel' %}" class="">Kernel Project</a></li>
+		<li><a href="{% url 'libvirt' %}" class="">Libvirt Project</a></li>
+		<li><a href="{% url 'openstack' %}" class="">OpenStack Project</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+
+    {% block content %}Empty page{% endblock %}
+
+    <p><hr></p>
+
+    <footer class="row">
+        <div class="span6" style="text-align:right">
+            <p>
+                &copy;2015 <a href="https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/W23a7086f4251_4420_b7f3_79aed69597e9/page/HomePage">LTC/SH</a>
+            </p>
+        </div>
+    </footer>
+</div> <!-- container -->
+
+</body>
+</html>

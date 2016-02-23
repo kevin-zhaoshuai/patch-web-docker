@@ -1,0 +1,4 @@
+django==1.5.12
+MySQL-python
+django-xadmin
+django-crispy-forms
