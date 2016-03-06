@@ -95,11 +95,11 @@ def get_commit_nums(tablename,mail,name):
 	
 def put_into_mysql(tablename,name,email,committime,comment,hash):
 	conn= MySQLdb.connect(
-			host='db',
-			port = 3306,
-			user='root',
-			passwd='000000',
-			db ='LTC_China_CommitInfo',
+			host= dbAddr,
+			port = dbPort,
+			user = 'root',
+			passwd = dbPasswd,
+			db = dbDatabase,
 			)
 	cur = conn.cursor()
 	print 'Ongoing writing to the database'
@@ -107,7 +107,7 @@ def put_into_mysql(tablename,name,email,committime,comment,hash):
 #	print type(time_datetime)
 #	print time_datetime
 	sqli="insert into "+tablename+" values(%s,%s,%s,%s,%s,%s)"
-	cur.execute(sqli,(' ',name,email,committime,comment,hash))	
+	cur.execute(sqli,('0',name,email,committime,comment,hash))	
 	cur.close()
 	conn.commit()
 	conn.close()
@@ -148,8 +148,8 @@ def update_database0(para1,para2,inc):
     mysql_init(tablename1)
     run(tablename1,project_dir1, date_from, date_to, search_key,mail_list1,name_list1)
     
-    name_list2 = ['Li Zhang']
-    mail_list2 = ['zhlcindy@gmail.com']
+    name_list2 = ['Li Zhang','Li Zhang']
+    mail_list2 = ['zhlcindy@gmail.com','zhlcindy@linux.vnet.ibm.com']
     project_dir2="/code/libvirt"
     tablename2="commitinfo_libvirt_project"
     mysql_init(tablename2)
