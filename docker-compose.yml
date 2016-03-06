@@ -10,11 +10,11 @@ db:
 
 web:
   build: .
-  command: python ./mysite/mysite/manage.py runserver 0.0.0.0:8000
+  command: /usr/sbin/apache2ctl -D FOREGROUND
   volumes:
     - .:/code
   ports:
-    - "8099:8000"
+    - "8098:80"
   links:
     - db
 
