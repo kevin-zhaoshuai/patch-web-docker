@@ -12,8 +12,9 @@ whole project is 8099, the mysql port is 3306
 **: Git code container need to connect the mysql db container
 using --link when "docker run" or modify the docker-compose ymal
 
+2016.03.06
+Begin port it to fleet and CoreOS
+
 TODO: 
-add apache2 to Django container
-add get docker ip address scripter for git_work.py
-Using fleet to orchestrate the container
+Using Kubernetes to deploy
 Add loading balance
