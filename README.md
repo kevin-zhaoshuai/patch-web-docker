@@ -8,6 +8,8 @@ libvirt
 openstack/nova
 
 Use docker-compose to integrate the container
+**: Git code container need to connect the mysql db container
+using --link when "docker run"
 
 TODO: 
 add apache2 to Django container
