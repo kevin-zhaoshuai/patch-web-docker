@@ -9,6 +9,16 @@ import MySQLdb
 import time,datetime
 import types
 
+#Read from os env
+dbAddr = os.environ.get('MYSITE_DB_1_PORT_3306_TCP_ADDR')
+
+#Port needs to be an interger
+dbPort = os.environ.get('MYSITE_DB_1_PORT_3306_TCP_PORT')
+dbPort = int(dbPort)
+
+dbPasswd = os.environ.get('MYSITE_DB_1_ENV_MYSQL_ROOT_PASSWORD')
+dbDatabase = os.environ.get('MYSITE_DB_1_ENV_MYSQL_DATABASE')
+
 schedule = sched.scheduler(time.time,time.sleep)
 
 def run(tablename,project_dir, date_from, date_to, search_key,mail_list,name_list):
@@ -104,14 +114,13 @@ def put_into_mysql(tablename,name,email,committime,comment,hash):
 
 def mysql_init(tablename):
 	conn= MySQLdb.connect(
-			host='db',
-			port = 3306,
-			user='root',
-			passwd='000000',
-			db ='LTC_China_CommitInfo',
+			host= dbAddr,
+			port = dbPort,
+			user = 'root',
+			passwd = dbPasswd,
+			db = dbDatabase,
 			)
 	cur = conn.cursor()
-#cur.execute("truncate table commitinfo_kernel_project")
 	cur.execute("truncate table "+tablename)
 	print 'Flush table success:'+tablename
 	cur.close()
@@ -161,7 +170,6 @@ if __name__ == '__main__':
     date_from = "20**-**-**"
     date_to = "****-**-**"
     search_key = "Bug:\d"
-#    name_list = ['Li Zhong']
     update_database0(0,0,0)
     begin_running()
 
