@@ -10,7 +10,6 @@ db:
 
 web:
   build: .
-  command: /usr/sbin/apache2ctl -D FOREGROUND
   volumes:
     - .:/code
   ports:

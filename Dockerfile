@@ -9,4 +9,7 @@ RUN apt-get update -y && apt-get install -y apache2 libapache2-mod-wsgi && apt-g
 ADD . /code/
 RUN cp /code/mysite/mysite /var/www/ -r
 RUN cp /code/mysite/*.conf /etc/apache2/sites-available/
-RUN service apache2 stop
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
