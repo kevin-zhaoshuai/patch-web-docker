@@ -1,5 +1,13 @@
 # Django settings for mysite project.
 
+import os
+dbAddr = os.environ.get('MYSITE_DB_1_PORT_3306_TCP_ADDR')
+dbPort = os.environ.get('MYSITE_DB_1_PORT_3306_TCP_PORT') 
+dbPort = int(dbPort)
+dbPasswd = os.environ.get('MYSITE_DB_1_ENV_MYSQL_ROOT_PASSWORD') 
+dbDatabase = os.environ.get('MYSITE_DB_1_ENV_MYSQL_DATABASE')   
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,12 +20,12 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'LTC_China_CommitInfo',                      # Or path to database file if using sqlite3.
+        'NAME': dbDatabase,                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'root',
-        'PASSWORD': '000000',
-        'HOST': 'db',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306',                      # Set to empty string for default.
+        'PASSWORD': dbPasswd,
+        'HOST': dbAddr,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': dbPort,                      # Set to empty string for default.
     }
 }
 
