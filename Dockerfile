@@ -12,4 +12,3 @@ RUN cp /code/mysite/*.conf /etc/apache2/sites-available/
 
 EXPOSE 80
 
-CMD /bin/bash -c "python /code/mysite/mysite/manage.py syncdb --noinput;/usr/sbin/apache2ctl -D FOREGROUND"
