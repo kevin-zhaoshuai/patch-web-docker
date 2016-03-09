@@ -1,0 +1,17 @@
+[Unit]
+Description=MySQL Server
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+KillMode=none
+
+# Run and stop
+ExecStartPre=-/usr/bin/docker kill mysite_db_1
+ExecStartPre=-/usr/bin/docker rm mysite_db_1
+ExecStart=/usr/bin/docker run --name mysite_db_1 -e MYSQL_DATABASE=LTC_China_CommitInfo -e MYSQL_ROOT_PASSWORD=000000  -p 3306:3306 zhaoshuaiabc/mysql
+
+ExecStop=/usr/bin/docker stop mysite_db_1
+[X-Fleet]
+Conflicts=mysql@*.service

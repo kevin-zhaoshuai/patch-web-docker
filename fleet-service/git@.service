@@ -1,0 +1,18 @@
+[Unit]
+Description=My project source code
+BindsTo=mysql@%i.service
+After=mysql@%i.service
+After=django@%i.service
+
+[Service]
+TimeoutStartSec=0
+KillMode=none
+
+ExecStartPre=-/usr/bin/docker kill mysite_git_1
+ExecStartPre=-/usr/bin/docker rm mysite_git_1
+ExecStart=/usr/bin/docker run --name mysite_git_1 --link mysite_db_1:mysite_db_1 -v /home/core/patch-web-docker:/code/patch-web-docker/ zhaoshuaiabc/mysite_git python /code/patch-web-docker/git/git_work.py
+
+ExecStop=/usr/bin/docker stop mysite_git_1
+[X-Fleet]
+Conflicts=git@*.service
+MachineOf=mysql@%i.service

@@ -1,0 +1,14 @@
+[Unit]
+Description=My django Server
+BindsTo=mysql@%i.service
+After=mysql@%i.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill mysite_web_1
+ExecStartPre=-/usr/bin/docker rm mysite_web_1
+ExecStart=/usr/bin/docker run --name mysite_web_1 -p 80:80 -v /home/core/patch-web-docker/:/code --link mysite_db_1:mysite_db_1 mysite_web /bin/bash -c "python /code/mysite/mysite/manage.py syncdb --noinput;/usr/sbin/apache2ctl -D FOREGROUND"
+
+[X-Fleet]
+Conflicts=django@*.service
+MachineOf=mysql@%i.service
