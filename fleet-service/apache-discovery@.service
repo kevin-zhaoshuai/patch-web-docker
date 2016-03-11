@@ -1,0 +1,11 @@
+[Unit]
+Description=Announce Apache1
+BindsTo=django@%i.service
+After=django@%i.service
+
+[Service]
+ExecStart=/bin/sh -c "while true; do etcdctl set /services/website/django@%i '%H:80' --ttl 60;sleep 45;done"
+ExecStop=/usr/bin/etcdctl rm /services/website/django@%i
+
+[X-Fleet]
+MachineOf=django@%i.service
