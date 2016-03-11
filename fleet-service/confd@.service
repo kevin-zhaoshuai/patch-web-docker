@@ -11,7 +11,10 @@ KillMode=none
 
 ExecStartPre=-/usr/bin/docker kill conf-data
 ExecStartPre=-/usr/bin/docker rm conf-data
-ExecStart=/usr/bin/docker run -v /home/core/patch-web-docker/confd/confd:/etc/nginx/confd --name conf-data zhaoshuaiabc/nginx_lb0 /bin/bash /usr/bin/confd-watch
+# Hard code the ip because has not find a good way to store the shell command to enviroment variables 
+# ifconfig eth0|grep 'inet '|awk '{print $2}'   
+# Get the ip
+ExecStart=/usr/bin/docker run -v /home/core/patch-web-docker/confd/confd:/etc/confd -p 80:80 -e IP_ADDR=192.168.122.130 --name conf-data zhaoshuaiabc/nginx_lb /bin/bash -c "rm /etc/nginx/sites-enabled/app.conf ;/bin/bash /usr/bin/confd-watch"
 ExecStop=/usr/bin/docker stop conf-data
 
 [X-Fleet]
