@@ -1,0 +1,19 @@
+# confdata.service
+
+[Unit]
+Description=Configuration Data Volume Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+KillMode=none
+
+ExecStartPre=-/usr/bin/docker kill conf-data
+ExecStartPre=-/usr/bin/docker rm conf-data
+ExecStart=/usr/bin/docker run -v /home/core/patch-web-docker/confd/confd:/etc/nginx/confd --name conf-data zhaoshuaiabc/nginx_lb0 /bin/bash /usr/bin/confd-watch
+ExecStop=/usr/bin/docker stop conf-data
+
+[X-Fleet]
+MachineID=334e39d9effb08d92e956db52a1032be
+
