@@ -156,7 +156,7 @@ def update_database0(para1,para2,inc):
     run(tablename2,project_dir2, date_from, date_to, search_key,mail_list2,name_list2)
     
     name_list3 = ['parklong','park hei','park hei','Wen Zhi Yu','Wen Zhi Yu','Wen Zhi Yu','Wenzhi Yu','Wenzhi Yu']
-    mail_list3 = ['heijlong@linux.vnet.ibm.com','heijlong@linux.vnet.ibm.com','jianlonghei@gmail.com','wenzhi_yu@163.com','yuywz@cn.ibm.com','wenzhi_yu@163.com']
+    mail_list3 = ['heijlong@linux.vnet.ibm.com','heijlong@linux.vnet.ibm.com','jianlonghei@gmail.com','wenzhi_yu@163.com','yuywz@cn.ibm.com','wenzhi_yu@163.com','yuywz@cn.ibm.com']
     project_dir3="/code/nova"
     tablename3="commitinfo_openstack_project"
     mysql_init(tablename3)
