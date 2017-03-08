@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load bootstrap_toolkit %}
+
+{% block content %}
+
+    <h2>{{tabletitle}}</h2>   
+    <table width="100%"><tr width="100%">
+	<td align="left" width="50%">
+	<h4>Total Commit: {{ total }}</h4>
+	</td>
+	<td align="right" width="50%">
+	<form class='form' name="date" action="" method="get">
+	<p align='right'><select name="year" onchange="DoOnchange()" class="shortselect">
+	{% for choice in choices %}
+	<option>{{choice}}</option>
+	{% endfor %}
+	</select></p>
+     	</form>
+	</td></tr></table>
+     <script>
+     function DoOnchange(){
+      document.date.submit();
+     }
+     </script> 
+
+    <table class="table  table-striped table-hover">
+        <tr>
+	    <td><strong>DateTime</strong></td>
+            <td><strong>Name</strong></td>
+            <td><strong>Comment</strong></td>
+	    <td><strong>SHA</strong></td>
+        </tr>
+        {% for line in lines %}
+            <tr>
+		<td>{{ line.datetime | date:"Y-m-d H:i:s" }}</td>
+                <td>{{ line.name }}</td>
+		<td>{{ line.comment }}</td>
+		<td>{{ line.hashvalue }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+   
+    {% bootstrap_pagination lines size="mini" align="right" %}
+
+{% endblock %}
